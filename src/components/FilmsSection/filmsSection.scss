@@ -49,9 +49,31 @@
 
         &-genres {
             display: flex;
-            width: 300px;
+            width: 1000px;
             flex-wrap: wrap;
             gap: 5px;
+
+            .films__filter-genres-button {
+                border: 1px solid rgb(13, 122, 217);
+                border-radius: 4px;
+                /* blue */
+                background: rgb(255, 255, 255);
+                padding: 8px 32px;
+
+                color: rgb(0, 0, 0);
+                font-size: 15px;
+                font-weight: 700;
+                line-height: 190%;
+                letter-spacing: .02rem;
+
+                text-align: center;
+
+            }
+
+            .active{
+                background: rgb(23, 80, 152);
+                color: rgb(255, 255, 255);
+            }
         }
         &-core {
             display: flex;

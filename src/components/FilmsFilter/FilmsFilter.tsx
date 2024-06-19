@@ -30,6 +30,8 @@ const FilmsFilter = observer(({ setSelectedOptionFormGlobal, setSelectedOptionPo
 		filter.setDateDiapason(values[0], values[1]);
 	}
 
+	
+
 	return (
 		<div className="films__filter">
 			<div className="films__filter-core">
@@ -37,7 +39,13 @@ const FilmsFilter = observer(({ setSelectedOptionFormGlobal, setSelectedOptionPo
 
 					<div className="films__filter-genres">
 						{filter.genres.map((item) => (
-							<button key={item} onClick={() => handleClickGenres(item)}>{item}</button>
+							<button 
+							key={item} 
+							onClick={() => handleClickGenres(item)}
+							className={filter.selectedGenres.includes(item) ? 'films__filter-genres-button active' : 'films__filter-genres-button'}
+							>
+								{item}
+							</button>
 						))}
 					</div>
 
@@ -45,15 +53,15 @@ const FilmsFilter = observer(({ setSelectedOptionFormGlobal, setSelectedOptionPo
 						range
 						min={0}
 						max={10}
-						defaultValue={[3, 10]}
+						defaultValue={[0, 10]}
 						tipFormatter={(value) => `${value}`} tipProps={undefined}
 						onChange={handleSliderChangeRating} />
 
 					<TooltipSlider
 						range
-						min={0}
-						max={10}
-						defaultValue={[3, 10]}
+						min={1990}
+						max={2024}
+						defaultValue={[1990, 2024]}
 						tipFormatter={(value) => `${value}`} tipProps={undefined}
 						onChange={handleSliderChangeDate} />
 				</div>
