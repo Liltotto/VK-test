@@ -1,0 +1,197 @@
+.films {
+    padding-top: 64px;
+    padding-bottom: 104px;
+
+
+    &__title {
+        color: rgb(19, 19, 19);
+        font-size: 48px;
+        font-weight: 500;
+        text-align: left;
+        
+        span {
+            color: rgb(13, 122, 217);
+        }
+    }
+
+    &__pages {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        margin-top: 32px;
+
+        &-item {
+            border: 1px solid rgb(13, 122, 217);
+            border-radius: 4px;
+            /* blue */
+            background: rgb(255, 255, 255);
+            padding: 8px 32px;
+
+            color: rgb(0, 0, 0);
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 190%;
+            letter-spacing: .02rem;
+
+            text-align: center;
+            
+            &_active {
+                background: rgb(23, 80, 152);
+                color: rgb(255, 255, 255);;
+            }
+        }
+    }
+
+    &__filter {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+
+        &-genres {
+            display: flex;
+            width: 300px;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        &-core {
+            display: flex;
+            gap: 32px;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        &-items {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+
+        }
+
+        &-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &-button {
+            border: 0;
+            border-radius: 4px;
+            /* blue */
+            background: rgb(13, 122, 217);
+            padding: 8px 32px;
+
+            color: rgb(255, 255, 255);
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 190%;
+            letter-spacing: .02rem;
+
+            text-align: center;
+
+            &:hover {
+                background: rgb(23, 80, 152);
+            }
+        }
+
+        &-clear-wrapper {
+            margin-top: 16px;
+        }
+
+        &-clear {
+
+            border: 0;
+            background-color: transparent;
+            display: flex;
+            gap: 4px;
+            align-items: center;
+
+            color: rgb(13, 122, 217);
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 145%;
+            letter-spacing: 0%;
+
+            cursor: pointer;
+
+            span {
+                border-bottom: 1px solid rgb(13, 122, 217, .2);
+            }
+
+        }
+    }
+
+    &__list {
+        margin-top: 48px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        column-gap: 70px;
+        row-gap: 30px;
+
+        &-btn {
+            border: 0;
+            border-radius: 4px;
+            /* blue */
+            background: rgb(13, 122, 217);
+            padding: 8px 32px;
+
+            color: rgb(255, 255, 255);
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 190%;
+            letter-spacing: .02rem;
+            align-self: center;
+            text-align: center;
+
+            &:hover {
+                background: rgb(23, 80, 152);
+            }
+        }
+    }
+
+    &__item {
+
+        width: 200px;
+        height: 350px;
+        background-color: rgb(255, 255, 255);
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, .25);
+        padding: 15px;
+        cursor: pointer;
+        transition: 0.3s transform;
+
+        &-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            transform: translate(-15px, -15px);
+
+        }
+
+        &-info {
+            margin-top: 5px;
+            height: 110px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        &-rating {
+            color: rgb(19, 19, 19);
+            font-size: 16px;
+            font-weight: 400;
+            text-align: left;
+        }
+
+        &-title {
+            color: rgb(19, 19, 19);
+            font-size: 18px;
+            font-weight: 500;
+            text-align: left;
+        }
+
+        &-year {
+            color: rgb(19, 19, 19);
+            font-size: 16px;
+            font-weight: 400;
+            text-align: left;
+        }
+    }
+}
