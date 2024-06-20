@@ -28,8 +28,6 @@ const FilmInfo = observer(() => {
 
     }, [isSuccess, data])
 
-    //const data = filter.showedFilms.find((film) => film.id === Number(filmId))
-
     return (
         <div className="films__info">
             {isLoading && <h2>Loading...</h2>}
@@ -43,10 +41,6 @@ const FilmInfo = observer(() => {
                             <h2>{filmData.name}</h2>
                             <p>{filmData.description}</p>
                             <p>{`Оценка imdb: ${filmData.rating}`}</p>
-                            {/* <div className="films__info-genres">
-                                <p><b>Жанры:</b> </p>
-                                <div style={{ display: 'flex', gap: '10px' }}>{filmData.genres?.map((genre) => <p key={genre.name}>{genre.name}</p>)}</div>
-                            </div> */}
 
                             <div className="films__info-genres">
                                 <p><b>Жанры:</b> {filmData.genres?.map((genre) => genre.name).join(', ')}</p>

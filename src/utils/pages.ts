@@ -8,13 +8,6 @@ export const getPagesArray = (totalPages: number) => {
     return result;
 }
 
-// interface Genre {
-//     name: string;
-//   }
-
-// interface Item extends Partial<Film> {
-//     genres: Genre[];
-// }
 
 export const getUniqueGenres = (arr: Film[]): string[] => {
     const uniqueGenres: string[] = [];

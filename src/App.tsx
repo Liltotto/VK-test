@@ -13,7 +13,6 @@ function App() {
 					<Route path="/" element={<FilmsSection />} />
 					<Route path="/:filmId" element={<FilmInfo />} />
 				</Routes>
-				{/* <FilmsSection /> */}
 			</div>
 			<Footer />
 		</>
@@ -21,7 +20,3 @@ function App() {
 }
 
 export default App
-
-// const RouterPage = (
-// 	props: { pageComponent: JSX.Element } & RouteComponentProps
-//   ) => props.pageComponent;
