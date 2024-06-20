@@ -1,7 +1,7 @@
 
 import "./footer.scss";
 
-function Footer(props) {
+function Footer() {
     return (
         <div className="footer">
             <div className="footer__left">

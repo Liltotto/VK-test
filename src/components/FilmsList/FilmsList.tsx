@@ -1,6 +1,3 @@
-
-
-
 import FilmsItem from "../FilmsItem/FilmsItem";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
@@ -22,32 +19,36 @@ const FilmsList = observer(() => {
         queryFn: () => getAllFilms(page),
     })
 
-
-
-    const [filteredFilms, setFilteredFilms] = useState([])
-
-    const [showedFilms, setshowedFilms] = useState(50)
-
-
-    function filterMoviesByGenres(movies: Film[], selectedGenres: string[]): Film[] {
-        if (!selectedGenres.length) { return movies }
-        return movies.filter((movie) => {
-            if (!movie.genres) {
-                return false;
+    function filterMovies(
+        movies: Film[],
+        selectedGenres: string[],
+        minRating: number,
+        maxRating: number,
+        minDate: number,
+        maxDate: number
+      ): Film[] {
+        
+        return movies
+          .filter((movie) =>
+            !selectedGenres.length
+              ? true
+              : selectedGenres.every((genre) =>
+                  movie.genres?.map((g) => g.name).includes(genre)
+                )
+          )
+          .filter((movie) => {
+            if (!movie.rating) {
+              return false;
             }
-
-            const movieGenres = movie.genres.map((genre) => genre.name);
-            return selectedGenres.every((genre) => movieGenres.includes(genre));
-        });
-    }
-
-    function filterMoviesByRating(movies: Film[], minRating: number, maxRating: number): Film[] {
-        return movies.filter((movie) => movie.rating >= minRating && movie.rating <= maxRating);
-    }
-
-    function filterMoviesByDate(movies: Film[], minDate: number, maxDate: number): Film[] {
-        return movies.filter((movie) => movie.rating >= minDate && movie.rating <= maxDate);
-    }
+            return movie.rating >= minRating && movie.rating <= maxRating;
+          })
+          
+          .filter((movie) => {
+            if (!movie.year) {
+              return false;
+            }
+            return movie.year >= minDate && movie.year <= maxDate;
+          })}
 
 
 
@@ -55,46 +56,38 @@ const FilmsList = observer(() => {
         if (isSuccess) {
             const genresToRender = getUniqueGenres(data)
             filter.setGenres(genresToRender)
-            setFilteredFilms(data)
+            filter.setFilteredFilms(data)
+            filter.setShowedFilms(data)
         }
+        console.log('1223231');
 
 
+    }, [data])
 
-    }, [isSuccess, data])
 
     useEffect(() => {
         if (isSuccess) {
-            let filtered = data;
-            filtered = filterMoviesByGenres(filtered, filter.selectedGenres);
-            setFilteredFilms(filtered);
+          filter.setFilteredFilms(
+            filterMovies(
+              data,
+              filter.selectedGenres,
+              filter.ratingDiapason[0],
+              filter.ratingDiapason[1],
+              filter.dateDiapason[0],
+              filter.dateDiapason[1]
+            )
+          );
         }
-    }, [isSuccess, data, filter.selectedGenres]);
-
-    useEffect(() => {
-        if (isSuccess) {
-            let filtered = data;
-            filtered = filterMoviesByRating(filtered, filter.ratingDiapason[0], filter.ratingDiapason[1]);
-            setFilteredFilms(filtered);
-        }
-    }, [isSuccess, data, filter.ratingDiapason]);
-
-    useEffect(() => {
-        if (isSuccess) {
-            let filtered = data;
-            filtered = filterMoviesByDate(filtered, filter.dateDiapason[0], filter.dateDiapason[1]);
-            setFilteredFilms(filtered);
-        }
-    }, [isSuccess, data, filter.dateDiapason]);
+      }, [filter.selectedGenres, filter.ratingDiapason, filter.dateDiapason, data]);
 
     return (
         <div>
             <ul className="films__list">
                 {isLoading && <h2>Loading...</h2>}
                 {error && <h2>Произошла ошибка</h2>}
-                {isSuccess && filteredFilms && (
+                {isSuccess && filter.showedFilms && (
                     <>
-                        {filteredFilms.map(item => <FilmsItem key={item.id} data={item} />)}
-
+                        {filter.showedFilms.map(item => <FilmsItem key={item.id} data={item} />)}
                     </>
 
                 )}

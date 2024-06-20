@@ -1,5 +1,3 @@
-
-import { useState } from 'react';
 import FilmsFilter from '../FilmsFilter/FilmsFilter';
 import FilmsList from '../FilmsList/FilmsList';
 import './filmsSection.scss';

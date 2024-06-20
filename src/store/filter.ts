@@ -1,14 +1,15 @@
 import { makeAutoObservable } from "mobx"
+import { Film } from "../services/FilmsService";
 
 
 class Filter {
     selectedGenres: string[] = []
     genres: string[] = []
     ratingDiapason = [0, 10]
-    dateDiapason = [1990, (() => {
-        const now = new Date();
-        return now.getFullYear();
-      })()];
+    dateDiapason = [1990, 2024];
+
+    filteredFilms: Film[] = [];
+    showedFilms: Film[] = [];
 
     constructor() {
         makeAutoObservable(this)
@@ -29,6 +30,14 @@ class Filter {
     setDateDiapason(min: number, max: number) {
         this.dateDiapason = [min, max]
     }
-}
+
+    setFilteredFilms(films: Film[]) {
+        this.filteredFilms = films
+    }
+
+    setShowedFilms(films: Film[]) {
+        this.showedFilms = films
+    }
+}   
 
 export default new Filter()
